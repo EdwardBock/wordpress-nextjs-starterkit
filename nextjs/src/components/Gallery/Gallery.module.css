@@ -1,0 +1,29 @@
+.gallery {
+}
+
+.stage {
+    display: grid;
+    place-content: center;
+
+    background: #00a0d2;
+    border-radius: 0.5em;
+}
+
+.item {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+.item.visible {
+    opacity: 1;
+}
+
+.stage > * {
+    scroll-snap-align: start;
+    grid-area: 1 / 1;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+}
