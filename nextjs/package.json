@@ -1,0 +1,35 @@
+{
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mailchimp/mailchimp_marketing": "3.0.80",
+    "@palasthotel/headless": "2.2.3",
+    "@palasthotel/wp-rest": "0.7.4",
+    "@public-function/wp": "0.6.1",
+    "drizzle-orm": "0.30.10",
+    "html-react-parser": "^5.1.10",
+    "mysql2": "3.9.8",
+    "next": "14.2.3",
+    "node-html-parser": "^6.1.13",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "sharp": "^0.33.4",
+    "stripe": "15.8.0",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "20",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.3",
+    "typescript": "5.4.5"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "apiVersion": 2,
+  "name": "blockx/composed-block",
+  "title": "composedBlock",
+  "category": "design",
+  "icon": "layout",
+  "description": "Adds a composed Block which can be used to insert other Blocks into one new Block",
+  "keywords": [
+    "composedBlock",
+    "innerBlocks"
+  ],
+  "textdomain": "blockx",
+  "supports": {
+    "html": false
+  },
+  "editorStyle": "blockx_composedBlock_style_editor",
+  "style": "blockx_composedBlock_style"
+}
