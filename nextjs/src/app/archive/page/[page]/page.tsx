@@ -1,38 +1,43 @@
-import {UseresRepository} from "@/lib/repository/users-repository";
 import {notFound} from "next/navigation";
 import {PostsRepository} from "@/lib/repository/posts-repository";
 import Link from "next/link";
 
 type Props = {
     params: {
-        author: string
+        page: string
     }
 }
 
-export default async function Author_Page(
+export default async function ArchivePage(
     {
         params: {
-            author
+            page,
         }
     }: Props
-){
+) {
 
-    const user = await UseresRepository().getUserBySlug(author);
-
-    if(!user){
+    const intPage = parseInt(page);
+    if (isNaN(intPage) || intPage <= 0) {
         notFound();
     }
 
-    const postsRepo = PostsRepository();
-    const posts = await postsRepo.getPosts({
-        author: `${user.id}`,
-    })
+    const result = await PostsRepository().getPosts({
+        per_page: 50,
+        page: intPage,
+    });
+
+    if(result == null || result.data.length == 0) {
+        notFound();
+    }
+
+    const posts = result.data;
 
     return (
         <div>
-            <h1>Author: {user.name}</h1>
+            <h1>Archive</h1>
+
             <ul>
-                {posts?.data?.map(post => {
+                {posts.map(post => {
                     return (
                         <li key={post.id}>
                             <Link href={post.path}>{post.title?.rendered}</Link>
@@ -40,6 +45,7 @@ export default async function Author_Page(
                     )
                 })}
             </ul>
+
         </div>
     )
 }

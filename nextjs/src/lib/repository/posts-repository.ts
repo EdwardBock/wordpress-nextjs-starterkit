@@ -52,7 +52,7 @@ export function PostsRepository(){
 
     }
 
-    async function getPosts(args: Pick<GetHeadlessPostsRequestArgs, "tags" | "categories" | "page" | "per_page"> = {}){
+    async function getPosts(args: Pick<GetHeadlessPostsRequestArgs, "tags" | "categories" | "author" | "page" | "per_page"> = {}){
         // TODO: hydrate
         const response = await wpFetchPosts(args);
 

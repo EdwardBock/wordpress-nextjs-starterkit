@@ -1,4 +1,19 @@
 
+const Destinations = {
+    post,
+    term,
+    categories,
+    category,
+    tags,
+    tag,
+    authors,
+    author,
+    profile,
+    shop,
+}
+
+export default Destinations;
+
 function post({category, postSlug, postId}:{category: string, postSlug: string, postId: number}){
     return `/${category}/${postSlug}-${postId}`;
 }
@@ -23,13 +38,19 @@ function tag({tag}: {tag: string}){
     return term({taxonomy: "tags", term: tag});
 }
 
-const Destinations = {
-    post,
-    term,
-    categories,
-    category,
-    tags,
-    tag,
+function authors(){
+    return `/authors`;
 }
 
-export default Destinations;
+function author({slug}:{slug: string}){
+    return `${authors()}/${slug}`;
+}
+
+function profile(){
+    return `/profile`;
+}
+
+function shop(){
+    return `/shop`;
+}
+
