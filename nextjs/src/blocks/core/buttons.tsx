@@ -9,7 +9,7 @@ export default function BlockCoreButtons(
         innerBlocks
     }: Props
 ){
-    return <div>
+    return <div className="content-layout">
         <Blocks content={innerBlocks ?? []} />
     </div>;
 }

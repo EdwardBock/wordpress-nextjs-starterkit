@@ -1,6 +1,6 @@
-import {UseresRepository} from "@/lib/repository/users-repository";
+import UsersRepository from "@/lib/repository/users-repository";
 import {notFound} from "next/navigation";
-import {PostsRepository} from "@/lib/repository/posts-repository";
+import PostsRepository from "@/lib/repository/posts-repository";
 import Link from "next/link";
 
 type Props = {
@@ -17,14 +17,13 @@ export default async function Author_Page(
     }: Props
 ){
 
-    const user = await UseresRepository().getUserBySlug(author);
+    const user = await UsersRepository.getUserBySlug(author);
 
     if(!user){
         notFound();
     }
 
-    const postsRepo = PostsRepository();
-    const posts = await postsRepo.getPosts({
+    const posts = await PostsRepository.getPosts({
         author: `${user.id}`,
     })
 

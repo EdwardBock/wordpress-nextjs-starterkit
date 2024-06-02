@@ -7,7 +7,7 @@ const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
     title: "WordPress + Next.js Startkit",
-    description: "Get up to speed in Minutes",
+    description: "Get up to speed in minutes",
 };
 
 export default function RootLayout({children}: PropsWithChildren) {

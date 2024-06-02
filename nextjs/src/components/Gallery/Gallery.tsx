@@ -6,11 +6,13 @@ import Button from "@/components/Button/Button";
 
 type Props = {
     items: ReactNode[]
+    className?: string
 }
 
 export default function Gallery(
     {
         items,
+        className = ""
     }: Props
 ) {
 
@@ -20,7 +22,7 @@ export default function Gallery(
     const firstItemIsVisible = visibleItem === 0;
 
     return (
-        <div className={styles.gallery}>
+        <div className={[styles.gallery, className].join(" ")}>
             <div className={styles.stage}>
 
                 {items.map((item, index) => {

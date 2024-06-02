@@ -31,12 +31,15 @@ export default function BlockCoreImage(
     const [url, width, height] = attrs.src
 
     return (
-        <figure>
+        <figure
+            className="content-layout"
+        >
             <Image
                 src={url}
                 width={width}
                 height={height}
                 alt={attrs.alt ?? ""}
+                style={{maxWidth: "100%", height: "auto"}}
             />
         </figure>
     )

@@ -105,3 +105,10 @@ a {
     color-scheme: dark;
   }
 }
+
+.content-layout {
+  --_padding: 8px;
+  --_max-width: 1100px;
+  max-width: min(calc(100vw - calc(var(--_padding) * 2)), var(--_max-width));
+  margin-inline: auto;
+}

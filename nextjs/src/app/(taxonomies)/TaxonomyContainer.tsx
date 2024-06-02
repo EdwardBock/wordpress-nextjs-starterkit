@@ -1,4 +1,4 @@
-import {TaxonomyRepository} from "@/lib/repository/taxonomy-repository";
+import TaxonomyRepository from "@/lib/repository/taxonomy-repository";
 import Link from "next/link";
 import Destinations from "@/lib/destinations";
 
@@ -13,7 +13,7 @@ export default async function TaxonomyContainer(
 ) {
 
 
-    const taxonomyRepo = TaxonomyRepository();
+    const taxonomyRepo = TaxonomyRepository;
     const terms = await taxonomyRepo.getTerms(taxonomy);
 
     return (

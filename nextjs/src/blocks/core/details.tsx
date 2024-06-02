@@ -15,7 +15,7 @@ export default function BlockCoreDetails(
     const document = parse(innerHTML);
     const summary = document.querySelector("summary")?.innerText ?? "";
     return (
-        <details>
+        <details className="content-layout">
             <summary>{summary}</summary>
             <Blocks content={innerBlocks} />
         </details>

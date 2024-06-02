@@ -7,70 +7,70 @@ const postTypeMapping: { [key: string]: string } = {
     "page": "pages",
 }
 
-export function PostsRepository(){
+const PostsRepository = {
+    getPosts,
+    getPostById,
+    getFrontPage,
+    getPageByPath,
+}
 
-    async function getPostById(id: number, postType: string = "post"){
-        const response = await wpFetchPostById(
-            id,
-            postTypeMapping?.[postType] ?? postType
-        );
-        if(!response) return null;
+export default PostsRepository;
 
-        return await hydrate(response);
-    }
+async function getPostById(id: number, postType: string = "post"){
+    const response = await wpFetchPostById(
+        id,
+        postTypeMapping?.[postType] ?? postType
+    );
+    if(!response) return null;
 
-    async function getFrontPage(){
-        const settings = await wpFetchSettings();
-        const pageId = settings?.page_on_front;
+    return await hydrate(response);
+}
 
-        if (pageId == null || pageId <= 0) return null;
+async function getFrontPage(){
+    const settings = await wpFetchSettings();
+    const pageId = settings?.page_on_front;
 
-        return getPostById(pageId, "page");
-    }
+    if (pageId == null || pageId <= 0) return null;
 
-    async function getPageByPath(pathSegments: string[]){
-        const result = await wpFetchPosts({
-            slug: pathSegments.join(","),
-            type: "pages",
-        });
+    return getPostById(pageId, "page");
+}
 
-        if(!result) return null;
+async function getPageByPath(pathSegments: string[]){
+    const result = await wpFetchPosts({
+        slug: pathSegments.join(","),
+        type: "pages",
+    });
 
-        const hierarchy = buildHierarchy(
-            result.data,
-            (page) => {
-                return page.id
-            },
-            (page) => {
-                return page.parent ? page.parent : false;
-            },
-        );
+    if(!result) return null;
 
-        const page = findPageInHierarchy(hierarchy, pathSegments);
+    const hierarchy = buildHierarchy(
+        result.data,
+        (page) => {
+            return page.id
+        },
+        (page) => {
+            return page.parent ? page.parent : false;
+        },
+    );
 
-        return page ? await hydrate(page) : null;
+    const page = findPageInHierarchy(hierarchy, pathSegments);
 
-    }
+    return page ? await hydrate(page) : null;
 
-    async function getPosts(args: Pick<GetHeadlessPostsRequestArgs, "tags" | "categories" | "author" | "page" | "per_page"> = {}){
-        // TODO: hydrate
-        const response = await wpFetchPosts(args);
+}
 
-        if(!response) return null;
+async function getPosts(args: Pick<GetHeadlessPostsRequestArgs, "tags" | "categories" | "author" | "page" | "per_page"> = {}){
+    // TODO: hydrate
+    const response = await wpFetchPosts(args);
 
-        return {
-            ...response,
-            data: await Promise.all(response?.data.map(hydrate)),
-        }
-    }
+    if(!response) return null;
 
     return {
-        getPosts,
-        getPostById,
-        getFrontPage,
-        getPageByPath,
+        ...response,
+        data: await Promise.all(response?.data.map(hydrate)),
     }
 }
+
 
 async function hydrate<T extends {link: string}>(post:T){
     const url = new URL(post.link);

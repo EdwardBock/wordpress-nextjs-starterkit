@@ -2,19 +2,18 @@ import {wpFetchPostById, wpFetchPosts, wpFetchSettings, wpFetchTerms, wpFetchUse
 import {buildHierarchy, Hierarchy} from "@palasthotel/wp-rest";
 
 
-export function UseresRepository() {
+const UsersRepository = {
+    getUserBySlug,
+}
 
-    async function getUserBySlug(slug: string){
-        const response = await wpFetchUsers(
-            {
-                slug,
-            }
-        );
+export default UsersRepository;
 
-        return response?.data?.find(u => u.slug === slug);
-    }
+async function getUserBySlug(slug: string) {
+    const response = await wpFetchUsers(
+        {
+            slug,
+        }
+    );
 
-    return {
-        getUserBySlug,
-    }
+    return response?.data?.find(u => u.slug === slug);
 }

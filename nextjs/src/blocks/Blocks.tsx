@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import {Suspense} from "react";
 
 export type Block = {
     blockName: string | null
@@ -16,7 +17,7 @@ export default async function Blocks(
 ) {
 
     return (
-        <>
+        <Suspense>
             {content.map(async (block, index) => {
                 if (block.blockName == null) {
                     return null;
@@ -33,11 +34,11 @@ export default async function Blocks(
                     {...block}
                 />
             })}
-        </>
+        </Suspense>
     )
 }
 
-function NotFoundBlock({blockName}: {blockName: string}) {
+function NotFoundBlock({blockName}: { blockName: string }) {
     return <p>{blockName} not implemented yet!</p>
 }
 
@@ -47,7 +48,7 @@ async function getBlockByName(blockName: string) {
             try {
                 return await import(`./${blockName}.tsx`);
             } catch (e) {
-                return  ()=> NotFoundBlock({blockName});
+                return () => NotFoundBlock({blockName});
             }
         }
     );

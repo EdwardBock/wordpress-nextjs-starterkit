@@ -1,5 +1,5 @@
 import {notFound} from "next/navigation";
-import {PostsRepository} from "@/lib/repository/posts-repository";
+import PostsRepository from "@/lib/repository/posts-repository";
 import Link from "next/link";
 
 type Props = {
@@ -21,7 +21,7 @@ export default async function ArchivePage(
         notFound();
     }
 
-    const result = await PostsRepository().getPosts({
+    const result = await PostsRepository.getPosts({
         per_page: 50,
         page: intPage,
     });
