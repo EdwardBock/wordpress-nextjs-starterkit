@@ -24,6 +24,7 @@ services:
     volumes:
       - ./wordpress/plugins:/var/www/html/wp-content/plugins
       - ./wordpress/themes:/var/www/html/wp-content/themes
+      - ./wordpress/wp.ini:/usr/local/etc/php/conf.d/wp.ini
     networks:
       - proxy
 
@@ -41,6 +42,16 @@ services:
       - db:/var/lib/mysql
     networks:
       - proxy
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 networks:
   proxy:
