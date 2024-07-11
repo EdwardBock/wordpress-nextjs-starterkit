@@ -33,3 +33,8 @@ Goto [localhost:8080](http://localhost:8081/) for both next.js and wordpress dep
 - **Gutenberg:** Every Block is represented by it's own React Component. No more dangerouslySetInnerHTML of the post content.
 - **Full Integration:** Full WordPress template hierarchy integration into Next.js.
 - **Optimized URL Structure:** Creates search engine optimized URLs for better visibility.
+
+
+## Liked it?
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/edwardbock)
