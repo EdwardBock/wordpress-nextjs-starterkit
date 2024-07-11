@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "blockx/posts",
+    "title": "Posts",
+    "category": "embed",
+    "attributes": {
+        "anchor": {
+            "type": "string"
+        },
+        "className": {
+            "type": "string"
+        },
+        "content": {
+            "type": "object"
+        }
+    },
+    "supports": {
+        "align": true,
+        "customClassName": true
+    },
+    "editorScript": "blockx",
+    "style": [],
+    "editorStyle": [],
+    "description": "List of posts",
+    "icon": "list-view"
+}

@@ -22,8 +22,7 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - ./wordpress/plugins:/var/www/html/wp-content/plugins
-      - ./wordpress/themes:/var/www/html/wp-content/themes
+      - ./wordpress/wp-content:/var/www/html/wp-content
       - ./wordpress/wp.ini:/usr/local/etc/php/conf.d/wp.ini
     networks:
       - proxy
@@ -57,5 +56,4 @@ networks:
   proxy:
 
 volumes:
-  wordpress:
   db:

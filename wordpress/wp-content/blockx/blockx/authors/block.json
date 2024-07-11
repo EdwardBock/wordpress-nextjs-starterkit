@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "blockx/authors",
+    "title": "Post authors",
+    "category": "embed",
+    "attributes": {
+        "anchor": {
+            "type": "string"
+        },
+        "className": {
+            "type": "string"
+        },
+        "content": {
+            "type": "object"
+        }
+    },
+    "supports": {},
+    "editorScript": "blockx",
+    "style": [],
+    "editorStyle": []
+}
