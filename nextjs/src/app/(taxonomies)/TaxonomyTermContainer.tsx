@@ -2,6 +2,7 @@ import TaxonomyRepository from "@/lib/repository/taxonomy-repository";
 import {notFound} from "next/navigation";
 import PostsRepository from "@/lib/repository/posts-repository";
 import Link from "next/link";
+import Pagination from "@/components/Pagination/Pagination";
 
 type Props = {
     taxonomy: string

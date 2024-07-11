@@ -3,11 +3,12 @@ import {Metadata} from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
 
+
     return {}
 }
 
-export default async function TagsPage(){
+export default async function CategoriesPage(){
     return (
-        <TaxonomyContainer taxonomy={"tags"} />
+        <TaxonomyContainer taxonomy={"Categories"} />
     )
 }

@@ -12,11 +12,11 @@ export default async function Search_Page(
     }: Props
 ){
 
-    console.debug(q);
+
 
     return (
         <div>
-            Search
+            Search for "{q}"
         </div>
     )
 }

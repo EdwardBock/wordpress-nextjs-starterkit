@@ -27,8 +27,10 @@ export default function Gallery(
 
                 {items.map((item, index) => {
                     return (
-                        <div key={index}
-                             className={[styles.item, index == visibleItem ? styles.visible : ""].join(" ")}>
+                        <div
+                            key={index}
+                            className={[styles.item, index == visibleItem ? styles.visible : ""].join(" ")}
+                        >
                             {item}
                         </div>
                     )

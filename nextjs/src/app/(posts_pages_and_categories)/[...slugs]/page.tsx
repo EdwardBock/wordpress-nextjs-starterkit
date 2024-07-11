@@ -2,7 +2,7 @@ import {isCategoryResult, isPostResult, isRedirectResult} from "./types";
 import {notFound, redirect} from "next/navigation";
 import PostContainer from "./PostContainer";
 import PageContainer from "./PageContainer";
-import {getBySlugs} from "./viewModel";
+import {getDataBySlugs} from "./viewModel";
 import TaxonomyTermContainer from "@/app/(taxonomies)/TaxonomyTermContainer";
 import {Metadata} from "next";
 
@@ -11,21 +11,20 @@ type Props = {
         slugs: string[]
     }
 }
-
 export async function generateMetadata(
     {
         params: {
             slugs,
         }
     }: Props
-){
-    const data = await getBySlugs(slugs);
+): Promise<Metadata> {
+    const data = await getDataBySlugs(slugs);
 
     if(isPostResult(data)){
         return {
             title: data.title?.rendered,
             description: data.excerpt?.rendered,
-        } satisfies Metadata
+        }
     }
 
     if(isCategoryResult(data)){
@@ -33,11 +32,10 @@ export async function generateMetadata(
         return {
             title: data.name,
             description: data.description,
-        } satisfies Metadata
+        }
     }
 
-
-    return {} satisfies Metadata
+    return {}
 }
 
 export default async function Page(
@@ -47,11 +45,7 @@ export default async function Page(
         }
     }: Props
 ){
-    const data = await getBySlugs(slugs);
-
-    if(!data){
-        notFound();
-    }
+    const data = await getDataBySlugs(slugs);
 
     if(isRedirectResult(data)){
         redirect(data.to);
@@ -66,4 +60,11 @@ export default async function Page(
     }
 
     notFound();
+}
+
+export const revalidate = 300;
+
+export async function generateStaticParams(){
+    // TODO: build with x latest posts from env
+    return [];
 }

@@ -1,0 +1,13 @@
+
+.pagination {
+    display: flex;
+    gap: 8px;
+
+    & a {
+        display: block;
+    }
+
+    & [data-is-current="true"] {
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,7 @@
+.scaffold {
+}
+
+.header,
+.footer {
+    margin-block: 16px;
+}

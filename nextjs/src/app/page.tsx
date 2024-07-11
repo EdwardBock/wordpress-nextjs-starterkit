@@ -11,13 +11,8 @@ export default async function Home() {
     const blocks = page?.content?.headless_blocks;
 
     return (
-        <>
-            <header>
-                <h1>{page?.title?.rendered}</h1>
-            </header>
-            <main>
-                <Blocks content={Array.isArray(blocks) ? blocks : []}/>
-            </main>
-        </>
-    );
+        <main>
+            <Blocks content={Array.isArray(blocks) ? blocks : []}/>
+        </main>
+    )
 }

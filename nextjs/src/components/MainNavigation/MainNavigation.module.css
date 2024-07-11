@@ -1,0 +1,23 @@
+.nav {
+    display: flex;
+    gap: 12px;
+
+    & a {
+        font-weight: 600;
+        text-decoration: none;
+        display: block;
+        padding: 8px 16px;
+        background-color: oklch(0.3 0.08 246);
+        color: white;
+        transition: background-color 220ms ease-in-out;
+
+        &:hover {
+            background-color: oklch(0.3 0.08 246 / 0.9);
+        }
+
+        &:active {
+            background-color: oklch(0.3 0.08 246 / 0.8);
+        }
+    }
+
+}

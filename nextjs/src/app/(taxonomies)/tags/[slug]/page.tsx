@@ -17,3 +17,9 @@ export default async function TermPage(
         <TaxonomyTermContainer taxonomy="tags" term={slug} />
     )
 }
+
+export const revalidate = 300;
+
+export async function generateStaticParams(){
+    return [];
+}

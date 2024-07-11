@@ -10,7 +10,7 @@ type Props = {
     content: Block[]
 }
 
-export default async function Blocks(
+export default function Blocks(
     {
         content,
     }: Props

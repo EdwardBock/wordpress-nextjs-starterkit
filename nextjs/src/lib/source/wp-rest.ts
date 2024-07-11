@@ -1,17 +1,23 @@
 import {
     getTermsRequest,
     GetTermsRequestArgs,
+    getUsersRequest,
+    GetUsersRequestArgs,
     isError,
     isParseError,
+    logIssues,
     responseAsCollection,
     responseAsEntity,
     termResponseSchema,
-    logIssues, getUsersRequest, GetUsersRequestArgs, userResponseSchema
+    userResponseSchema
 } from "@palasthotel/wp-rest";
 import {
-    GetHeadlessPostsRequestArgs, getPostsWithBlocksRequest,
+    GetHeadlessPostsRequestArgs,
+    getMenusRequest,
+    getPostsWithBlocksRequest,
     getPostWithBlocksRequest,
     getSettingsRequest,
+    menusResponseSchema,
     postWithBlocksResponseSchema,
     settingsResponseSchema,
     withHeadlessParam,
@@ -158,4 +164,33 @@ export async function wpFetchUsers(
     }
 
     return result;
+}
+
+export async function wpFetchMenu(slug: string) {
+    const url = getMenusRequest({
+        baseUrl: config.wp.baseUrl,
+    });
+
+    const result = await fetch(
+        url,
+        {
+            next: {
+                revalidate: 5 * 60,
+                tags: ["menus"]
+            }
+        }
+    ).then(responseAsEntity(menusResponseSchema));
+
+    if (isParseError(result)) {
+        logIssues(result);
+        console.error(url);
+        return null;
+    }
+
+    if (isError(result)) {
+        console.error(url);
+        return null;
+    }
+
+    return result[slug] ?? null;
 }

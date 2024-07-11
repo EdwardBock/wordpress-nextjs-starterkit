@@ -1,6 +1,5 @@
 import TaxonomyRepository from "@/lib/repository/taxonomy-repository";
 import Link from "next/link";
-import Destinations from "@/lib/destinations";
 
 type Props = {
     taxonomy: string
@@ -12,7 +11,6 @@ export default async function TaxonomyContainer(
     }: Props
 ) {
 
-
     const taxonomyRepo = TaxonomyRepository;
     const terms = await taxonomyRepo.getTerms(taxonomy);
 
@@ -22,7 +20,7 @@ export default async function TaxonomyContainer(
             <ul>
                 {terms?.data?.map(term => {
                     return (
-                        <li key={term.id}><Link href={Destinations.term({taxonomy, term: term.slug})}>{term.name}</Link></li>
+                        <li key={term.id}><Link href={term.link}>{term.name}</Link></li>
                     )
                 })}
             </ul>

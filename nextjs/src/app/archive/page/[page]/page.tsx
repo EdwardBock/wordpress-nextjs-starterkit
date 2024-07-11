@@ -1,6 +1,7 @@
 import {notFound} from "next/navigation";
 import PostsRepository from "@/lib/repository/posts-repository";
 import Link from "next/link";
+import Pagination from "@/components/Pagination/Pagination";
 
 type Props = {
     params: {
@@ -22,7 +23,7 @@ export default async function ArchivePage(
     }
 
     const result = await PostsRepository.getPosts({
-        per_page: 50,
+        per_page: 5,
         page: intPage,
     });
 
@@ -45,6 +46,12 @@ export default async function ArchivePage(
                     )
                 })}
             </ul>
+
+            <Pagination
+                basePath="/archive/page/"
+                currentPage={intPage}
+                pages={result.totalPages}
+            />
 
         </div>
     )

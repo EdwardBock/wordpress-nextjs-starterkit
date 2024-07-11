@@ -1,0 +1,9 @@
+.columns {
+    display: grid;
+    grid-template-columns: repeat(var(--_columns), 1fr);
+    gap: 12px;
+
+    &[data-is-stacked-mobile="true"] {
+        background: green;
+    }
+}
