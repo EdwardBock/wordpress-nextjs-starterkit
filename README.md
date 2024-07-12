@@ -5,10 +5,10 @@ Unlock the full potential of your WordPress site with this comprehensive integra
 ## In short and sweet
 
 - `nextjs/` contains the **nextjs** source code
-- `proxy/` contains **nginx** configuration for single domain setup (optional)
 - `wordpress/` contains all **wordpress** related code
     - `/wp-content` contains plugins and themes
     - `wp.ini` some php configuration
+- `proxy/` contains **nginx** configuration for single domain setup (optional)
 - `docker-compose.yml` spin up wordpress and nginx
 
 ## Getting started
@@ -22,15 +22,15 @@ npm run dev
 
 ```
 
-Goto [localhost:8081](http://localhost:8081/) for the wordpress installation.
+Goto [localhost:8081](http://localhost:8081/) for the WordPress installation.
 
-Goto [localhost:3000](http://localhost:3000/) for the next.js application.
+Goto [localhost:3000](http://localhost:3000/) for the Next.js application.
 
-Goto [localhost:8080](http://localhost:8081/) for both next.js and wordpress depending on the url path.
+Goto [localhost:8080](http://localhost:8081/) for both Next.js and WordPress depending on the url path.
 
 ## Key Features
 
-- **Gutenberg:** Every Block is represented by it's own React Component. No more dangerouslySetInnerHTML of the post content.
+- **Gutenberg Block Editor:** Each Block is represented by its own React Component, ensuring **safe content rendering without using dangerouslySetInnerHTML** for post content
 - **Full Integration:** Full WordPress template hierarchy integration into Next.js.
 - **Optimized URL Structure:** Creates search engine optimized URLs for better visibility.
 
