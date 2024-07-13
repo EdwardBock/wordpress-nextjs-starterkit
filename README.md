@@ -28,6 +28,14 @@ Goto [localhost:3000](http://localhost:3000/) for the Next.js application.
 
 Goto [localhost:8080](http://localhost:8081/) for both Next.js and WordPress depending on the url path.
 
+**Important:** After WordPress installation you need to change the permalink settings to:
+
+-  **Permalink Structure:** `/%category%/%postname%-%post_id%/`
+- **Category base:** `.`
+- **Tag base:** `tags`
+
+This aligns the WordPress permalink structures with the Next.js routes.
+
 ## Key Features
 
 - **Gutenberg Block Editor:** Each Block is represented by its own React Component, ensuring **safe content rendering without using dangerouslySetInnerHTML** for post content
