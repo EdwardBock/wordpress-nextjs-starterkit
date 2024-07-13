@@ -6,7 +6,7 @@ Unlock the full potential of your WordPress site with this comprehensive integra
 
 - `nextjs/` contains the **nextjs** source code
 - `wordpress/` contains all **wordpress** related code
-    - `/wp-content` contains plugins and themes
+    - `wp-content/` contains plugins and themes
     - `wp.ini` some php configuration
 - `proxy/` contains **nginx** configuration for single domain setup (optional)
 - `docker-compose.yml` spin up wordpress and nginx
