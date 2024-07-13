@@ -1,4 +1,4 @@
-# WordPress ♥️ Next.js Starterkit
+# WordPress with️ Next.js Starterkit
 
 Unlock the full potential of your WordPress site with this comprehensive integration of WordPress template hierarchy into Next.js routes. This cutting-edge solution leverages the power of the Next.js app router, ensuring a seamless and efficient experience for developers and users alike.
 
