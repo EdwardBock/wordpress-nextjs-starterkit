@@ -1,15 +1,4 @@
 services:
-  proxy:
-    image: nginx
-    volumes:
-      - ./proxy:/etc/nginx/conf.d:ro
-    ports:
-      - 8080:80
-    restart: always
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    networks:
-      - proxy
 
   wordpress:
     image: wordpress:latest
@@ -21,9 +10,30 @@ services:
       WORDPRESS_DB_USER: exampleuser
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_CONFIG_EXTRA: |
+        define('HEADLESS_SECRET_TOKEN', 'some-secret-token' );
     volumes:
       - ./wordpress/wp-content:/var/www/html/wp-content
       - ./wordpress/wp.ini:/usr/local/etc/php/conf.d/wp.ini
+    networks:
+      - proxy
+
+  proxy:
+    image: nginx
+    volumes:
+      - ./proxy:/etc/nginx/conf.d:ro
+    ports:
+      - 8080:80
+    restart: always
+    healthcheck:
+      test: ["CMD", "service", "nginx", "status"]
+      start_period: 1m
+      start_interval: 10s
+      interval: 1m
+      timeout: 5s
+      retries: 3
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     networks:
       - proxy
 
@@ -32,6 +42,13 @@ services:
     restart: always
     ports:
       - 3306:3306
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized" ]
+      start_period: 1m
+      start_interval: 10s
+      interval: 1m
+      timeout: 5s
+      retries: 3
     environment:
       MYSQL_DATABASE: exampledb
       MYSQL_USER: exampleuser
