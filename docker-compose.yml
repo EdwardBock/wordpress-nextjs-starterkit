@@ -15,11 +15,9 @@ services:
     volumes:
       - ./wordpress/wp-content:/var/www/html/wp-content
       - ./wordpress/wp.ini:/usr/local/etc/php/conf.d/wp.ini
-    networks:
-      - proxy
 
   proxy:
-    image: nginx
+    image: nginx:1.27
     volumes:
       - ./proxy:/etc/nginx/conf.d:ro
     ports:
@@ -34,8 +32,6 @@ services:
       retries: 3
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    networks:
-      - proxy
 
   db:
     image: mariadb:10
@@ -56,11 +52,9 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - db:/var/lib/mysql
-    networks:
-      - proxy
 
   redis:
-    image: redis:latest
+    image: redis:7.2
     ports:
       - 6379:6379
     healthcheck:
@@ -68,9 +62,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-
-networks:
-  proxy:
 
 volumes:
   db:
