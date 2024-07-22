@@ -1,6 +1,6 @@
 import {
     getTermsRequest,
-    GetTermsRequestArgs,
+    GetTermsRequestArgs, getUserRequest, GetUserRequestArgs,
     getUsersRequest,
     GetUsersRequestArgs,
     isError,
@@ -151,6 +151,35 @@ export async function wpFetchUsers(
             }
         }
     ).then(responseAsCollection(userResponseSchema.passthrough().array()));
+
+    if (isParseError(result)) {
+        logIssues(result);
+        console.error(url);
+        return null;
+    }
+
+    if (isError(result)) {
+        console.error(url);
+        return null;
+    }
+
+    return result;
+}
+
+export async function wpFetchUser(id: number) {
+    const url = getUserRequest({
+        baseUrl: config.wp.baseUrl,
+        id,
+    });
+    const result = await fetch(
+        url,
+        {
+            next: {
+                revalidate: 5 * 60,
+                tags: [`users`, `user-${id}`],
+            }
+        }
+    ).then(responseAsEntity(userResponseSchema.passthrough()));
 
     if (isParseError(result)) {
         logIssues(result);

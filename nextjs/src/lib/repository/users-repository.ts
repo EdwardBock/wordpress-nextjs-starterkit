@@ -1,9 +1,9 @@
-import {wpFetchPostById, wpFetchPosts, wpFetchSettings, wpFetchTerms, wpFetchUsers} from "@/lib/source/wp-rest";
-import {buildHierarchy, Hierarchy} from "@palasthotel/wp-rest";
+import {wpFetchUser, wpFetchUsers} from "@/lib/source/wp-rest";
 
 
 const UsersRepository = {
     getUserBySlug,
+    getUserById,
 }
 
 export default UsersRepository;
@@ -16,4 +16,8 @@ async function getUserBySlug(slug: string) {
     );
 
     return response?.data?.find(u => u.slug === slug);
+}
+
+async function getUserById(id: number) {
+    return await wpFetchUser(id);
 }
