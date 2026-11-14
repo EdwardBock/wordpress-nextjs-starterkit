@@ -1,5 +1,10 @@
 # WordPress with️ Next.js Starterkit
 
+> [!WARNING]
+> **No longer maintained.** This starter kit is from my WordPress years. The code stays freely available under
+> its license, but it is no longer developed and its dependencies are not updated anymore. Use it as a reference
+> rather than as the base for a new project.
+
 Unlock the full potential of your WordPress site with this comprehensive integration of WordPress template hierarchy into Next.js routes. This cutting-edge solution leverages the power of the Next.js app router, ensuring a seamless and efficient experience for developers and users alike.
 
 ## In short and sweet
